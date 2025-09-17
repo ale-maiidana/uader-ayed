@@ -1,0 +1,90 @@
+# 22. Se dispone de una lista de todos los Jedi, de cada uno de estos se conoce su nombre, maestros,
+# colores de sable de luz usados y especie. implementar las funciones necesarias para resolver las
+# actividades enumeradas a continuación:
+
+
+
+from typing import List
+
+class Jedi:
+    def __init__(self, name: str, masters: List[str], lightsaber_colors: List[str], species: str):
+        self.name = name
+        self.masters = masters          # Lista de nombres de maestros
+        self.lightsaber_colors = lightsaber_colors  # Lista de colores de sable de luz
+        self.species = species
+
+    def __str__(self):
+        return (
+            f"Nombre: {self.name}, "
+            f"Maestros: {', '.join(self.masters) if self.masters else 'Ninguno'}, "
+            f"Colores de sable: {', '.join(self.lightsaber_colors)}, "
+            f"Especie: {self.species}"
+        )
+
+
+# Lista de Jedi
+jedi_list = []
+
+# Cargar datos de ejemplo
+jedi_list.append(Jedi("Ahsoka Tano", ["Anakin Skywalker"], ["Blanco"], "Togruta"))
+jedi_list.append(Jedi("Kit Fisto", ["Yoda"], ["Verde"], "Nautolano"))
+jedi_list.append(Jedi("Yoda", [], ["Verde"], "Desconocida"))
+jedi_list.append(Jedi("Luke Skywalker", ["Obi-Wan Kenobi", "Yoda"], ["Azul"], "Humana"))
+jedi_list.append(Jedi("Qui-Gon Jinn", ["Conde Dooku"], ["Verde"], "Humana"))
+jedi_list.append(Jedi("Mace Windu", ["Yoda"], ["Púrpura"], "Humana"))
+jedi_list.append(Jedi("Barriss Offee", ["Luminara Unduli"], ["Azul"], "Mirialan"))
+jedi_list.append(Jedi("Luminara Unduli", ["Yoda"], ["Verde"], "Mirialan"))
+jedi_list.append(Jedi("Obi-Wan Kenobi", ["Qui-Gon Jinn"], ["Azul"], "Humana"))
+
+# a. Listado ordenado por nombre y por especie
+print("a. Listado ordenado por nombre:")
+for jedi in sorted(jedi_list, key=lambda x: x.name):
+    print(jedi)
+print("\nListado ordenado por especie:")
+for jedi in sorted(jedi_list, key=lambda x: x.species):
+    print(jedi)
+print("\n")
+# b. Mostrar toda la información de Ahsoka Tano y Kit Fisto
+print("b. Información de Ahsoka Tano y Kit Fisto:")
+for jedi in jedi_list:
+    if jedi.name in ["Ahsoka Tano", "Kit Fisto"]:
+        print(jedi)
+print("\n")
+# c. Mostrar todos los padawan de Yoda y Luke Skywalker
+print("c. Padawan de Yoda y Luke Skywalker:")
+for jedi in jedi_list:
+    if "Yoda" in jedi.masters or "Luke Skywalker" in jedi.masters:
+        print(jedi)
+print("\n")
+# d. Mostrar los Jedi de especie humana y twi'lek
+print("d. Jedi de especie humana y twi'lek:")
+for jedi in jedi_list:
+    if jedi.species in ["Humana", "Twi'lek"]:
+        print(jedi)
+print("\n")
+# e. Listar todos los Jedi que comienzan con A
+print("e. Jedi que comienzan con A:")
+for jedi in jedi_list:
+    if jedi.name.startswith("A"):
+        print(jedi)
+print("\n")
+# f. Mostrar los Jedi que usaron sable de luz de más de un color
+print("f. Jedi que usaron sable de luz de más de un color:")
+for jedi in jedi_list:
+    if len(jedi.lightsaber_colors) > 1:
+        print(jedi)
+print("\n")
+# g. Indicar los Jedi que utilizaron sable de luz amarillo o violeta
+print("g. Jedi que utilizaron sable de luz amarillo o violeta:")
+for jedi in jedi_list:
+    if "Amarillo" in jedi.lightsaber_colors or "Violeta" in jedi.lightsaber_colors:
+        print(jedi)
+print("\n")
+# h. Indicar los nombres de los padawans de Qui-Gon Jin y Mace Windu, si los tuvieron
+print("h. Nombres de los padawans de Qui-Gon Jinn y Mace Windu:")
+for jedi in jedi_list:
+    if "Qui-Gon Jinn" in jedi.masters or "Mace Windu" in jedi.masters:
+        print(jedi.name)
+print("\n")
+# Fin del código
+
